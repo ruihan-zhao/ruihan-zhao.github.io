@@ -1,0 +1,798 @@
+# ----------------------------------------------------------------------------
+# publications.yml — 论文数据（单一事实来源）。首版由 scripts/_seed-publications.mjs 生成，此后手工维护。
+# 只收录 published / accepted / preprint；在审、投稿中的稿件一律不得写入（放 ../private/）。
+# 字段：selected=首页精选；theme=研究主线(hrc|ec|vision|early)；venue=见 venues.yml；
+#       citations 为快照（来源+日期），上线后由 GitHub Actions 定期刷新。
+# ----------------------------------------------------------------------------
+- id: gao2026fomoead
+  type: conference
+  status: published
+  public: true
+  selected: false
+  theme: ec
+  title: "FO-MOEA/D-P: Fractional-Order Probability-Guided Decomposition for Smart Three-Objective Wind Farm Layout Optimization"
+  authors:
+    - Jinlei Gao
+    - Sichen Tao
+    - Ruihan Zhao
+    - Hanyu Hu
+    - Qingke Zhang
+    - Sicheng Liu
+  year: 2026
+  date: 2026-06
+  online: 2026-08-13
+  online_basis: crossref_created
+  venue: iccnse
+  pages: 131-136
+  doi: 10.1109/iccnse70788.2026.11636107
+  url: https://ieeexplore.ieee.org/document/11636107/
+  tags:
+    - multi-objective optimization
+    - decomposition
+    - wind farm layout optimization
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: zhao2026adaptive
+  type: journal
+  status: published
+  public: true
+  selected: true
+  theme: hrc
+  title: "Adaptive product family formation: A medoid-based fuzzy clustering method for mixed product assembly in the shared human–robot collaborative system"
+  authors:
+    - Ruihan Zhao
+    - Sichen Tao
+    - Yangzheng Zhou
+    - Xinyang Zhang
+    - Pengzhong Li
+  author_notes: "Crossref swaps the 3rd author's given/family names; normalized to Yangzheng Zhou. 4th author Xinyang Zhang (confirmed by the author, 2026-09-26)."
+  corresponding:
+    - Pengzhong Li
+  corresponding_source: Confirmed by the author (2026-09-26)
+  year: 2026
+  date: 2026-08
+  online: 2026-05-14
+  online_basis: crossref_created
+  venue: asoc
+  volume: "200"
+  article_number: "115419"
+  doi: 10.1016/j.asoc.2026.115419
+  url: https://www.sciencedirect.com/science/article/pii/S1568494626008677
+  tags:
+    - human–robot collaboration
+    - product family formation
+    - fuzzy clustering
+    - mixed-product assembly
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Technical University of Munich
+    - Tongji University
+- id: tao2026rdexcmop
+  type: preprint
+  status: preprint
+  public: true
+  selected: false
+  theme: ec
+  title: "RDEx-CMOP: Feasibility-Aware Indicator-Guided Differential Evolution for Fixed-Budget Constrained Multiobjective Optimization"
+  authors:
+    - Sichen Tao
+    - Yifei Yang
+    - Ruihan Zhao
+    - Kaiyu Wang
+    - Sicheng Liu
+    - Shangce Gao
+  year: 2026
+  date: 2026-04-04
+  online: 2026-04-04
+  online_basis: arxiv_v1
+  venue: arxiv
+  doi: 10.48550/arXiv.2604.03708
+  url: https://arxiv.org/abs/2604.03708
+  arxiv: "2604.03708"
+  arxiv_primary: cs.NE
+  code: https://github.com/SichenTao/IEEE-CEC-2025-Competition-RDEx-Series/tree/main/RDEx_CMOP
+  tags:
+    - differential evolution
+    - constrained multi-objective optimization
+    - IEEE CEC 2025
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: arXiv API
+    checked: 2026-09-26
+  affiliations_on_paper: []
+- id: tao2026rdexmop
+  type: preprint
+  status: preprint
+  public: true
+  selected: false
+  theme: ec
+  title: "RDEx-MOP: Indicator-Guided Reconstructed Differential Evolution for Fixed-Budget Multiobjective Optimization"
+  authors:
+    - Sichen Tao
+    - Yifei Yang
+    - Ruihan Zhao
+    - Kaiyu Wang
+    - Sicheng Liu
+    - Shangce Gao
+  year: 2026
+  date: 2026-03-28
+  online: 2026-03-28
+  online_basis: arxiv_v1
+  venue: arxiv
+  doi: 10.48550/arXiv.2603.27092
+  url: https://arxiv.org/abs/2603.27092
+  arxiv: "2603.27092"
+  arxiv_primary: cs.NE
+  code: https://github.com/SichenTao/IEEE-CEC-2025-Competition-RDEx-Series/tree/main/RDEx_MOP
+  tags:
+    - differential evolution
+    - multi-objective optimization
+    - IEEE CEC 2025
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: arXiv API
+    checked: 2026-09-26
+  affiliations_on_paper: []
+- id: tao2026rdexsop
+  type: preprint
+  status: preprint
+  public: true
+  selected: false
+  theme: ec
+  title: "RDEx-SOP: Exploitation-Biased Reconstructed Differential Evolution for Fixed-Budget Bound-Constrained Single-Objective Optimization"
+  authors:
+    - Sichen Tao
+    - Yifei Yang
+    - Ruihan Zhao
+    - Kaiyu Wang
+    - Sicheng Liu
+    - Shangce Gao
+  year: 2026
+  date: 2026-03-28
+  online: 2026-03-28
+  online_basis: arxiv_v1
+  venue: arxiv
+  doi: 10.48550/arXiv.2603.27089
+  url: https://arxiv.org/abs/2603.27089
+  arxiv: "2603.27089"
+  arxiv_primary: cs.NE
+  code: https://github.com/SichenTao/IEEE-CEC-2025-Competition-RDEx-Series/tree/main/RDEx_SOP
+  tags:
+    - differential evolution
+    - single-objective optimization
+    - IEEE CEC 2025
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: arXiv API
+    checked: 2026-09-26
+  affiliations_on_paper: []
+- id: tao2026rdexcsop
+  type: preprint
+  status: preprint
+  public: true
+  selected: false
+  theme: ec
+  title: "RDEx-CSOP: Feasibility-Aware Reconstructed Differential Evolution with Adaptive epsilon-Constraint Ranking"
+  authors:
+    - Sichen Tao
+    - Yifei Yang
+    - Ruihan Zhao
+    - Kaiyu Wang
+    - Sicheng Liu
+    - Shangce Gao
+  year: 2026
+  date: 2026-03-28
+  online: 2026-03-28
+  online_basis: arxiv_v1
+  venue: arxiv
+  doi: 10.48550/arXiv.2603.27090
+  url: https://arxiv.org/abs/2603.27090
+  arxiv: "2603.27090"
+  arxiv_primary: cs.NE
+  code: https://github.com/SichenTao/IEEE-CEC-2025-Competition-RDEx-Series/tree/main/RDEx_CSOP
+  tags:
+    - differential evolution
+    - constrained optimization
+    - IEEE CEC 2025
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: arXiv API
+    checked: 2026-09-26
+  affiliations_on_paper: []
+- id: zhao2025resource
+  type: conference
+  status: published
+  public: true
+  selected: true
+  theme: hrc
+  title: Human-robot Collaborative Resource and Task Planning for Assembly Systems with Self-learning Multi-objective Evolutionary Optimizer
+  authors:
+    - Ruihan Zhao
+    - Sichen Tao
+    - Pengzhong Li
+  year: 2025
+  date: 2025-06-01
+  online: 2025-09-04
+  online_basis: crossref_created
+  venue: rcar
+  pages: 1272-1277
+  doi: 10.1109/rcar65431.2025.11139773
+  url: https://ieeexplore.ieee.org/document/11139773/
+  tags:
+    - human–robot collaboration
+    - resource and task planning
+    - multi-objective evolutionary optimization
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: zhao2025humancentric
+  type: journal
+  status: published
+  public: true
+  selected: true
+  theme: hrc
+  title: Human-centric assembly planning framework for human–robot collaborative systems with efficient reinforcement self-learning multi-objective evolutionary optimizer
+  authors:
+    - Ruihan Zhao
+    - Sichen Tao
+    - Pengzhong Li
+  corresponding:
+    - Pengzhong Li
+  corresponding_source: Publisher page, as recorded in SichenTao/academic-homepage (verified 2026-08-31)
+  year: 2025
+  date: 2025-09
+  online: 2025-06-17
+  online_basis: crossref_created
+  venue: aei
+  volume: "67"
+  article_number: "103508"
+  doi: 10.1016/j.aei.2025.103508
+  url: https://www.sciencedirect.com/science/article/pii/S147403462500401X
+  tags:
+    - human–robot collaboration
+    - assembly planning
+    - human-centric manufacturing
+    - reinforcement learning
+    - multi-objective evolutionary optimization
+  citations:
+    count: 13
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Technical University of Munich
+    - Tongji University
+- id: tao2025detection
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: ec
+  title: A Novel Detection-and-Replacement-Based Order-Operator for Differential Evolution in Solving Complex Bound Constrained Optimization Problems
+  authors:
+    - Sichen Tao
+    - Sicheng Liu
+    - Shoya Ohta
+    - Ruihan Zhao
+    - Zheng Tang
+    - Yifei Yang
+  year: 2025
+  date: 2025-04-24
+  online: 2025-04-24
+  online_basis: crossref_published_online
+  venue: mathematics
+  volume: "13"
+  issue: "9"
+  article_number: "1389"
+  doi: 10.3390/math13091389
+  url: https://www.mdpi.com/2227-7390/13/9/1389
+  license: CC BY 4.0
+  tags:
+    - differential evolution
+    - bound-constrained optimization
+  citations:
+    count: 4
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Technical University of Munich
+    - Tongji University
+- id: wang2025aipowered
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: health
+  title: "AI-powered model for predicting mortality risk in VA-ECMO patients: a multicenter cohort study"
+  authors:
+    - Shuai Wang
+    - Sichen Tao
+    - Ying Zhu
+    - Qiao Gu
+    - Peifeng Ni
+    - Weidong Zhang
+    - Chenxi Wu
+    - Ruihan Zhao
+    - Wei Hu
+    - Mengyuan Diao
+  authorship_note: Authorship confirmed by the author (2026-09-26); Crossref carries no affiliation strings for this work.
+  year: 2025
+  date: 2025-03-26
+  online: 2025-03-26
+  online_basis: crossref_published_online
+  venue: scirep
+  volume: "15"
+  issue: "1"
+  article_number: "10362"
+  doi: 10.1038/s41598-025-94734-3
+  url: https://www.nature.com/articles/s41598-025-94734-3
+  license: CC BY-NC-ND 4.0
+  tags:
+    - healthcare
+    - mortality risk prediction
+    - VA-ECMO
+    - machine learning
+  citations:
+    count: 9
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper: []
+- id: tao2025fractional
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: ec
+  title: A State-of-the-Art Fractional Order-Driven Differential Evolution for Wind Farm Layout Optimization
+  authors:
+    - Sichen Tao
+    - Sicheng Liu
+    - Ruihan Zhao
+    - Yifei Yang
+    - Hiroyoshi Todo
+    - Haichuan Yang
+  year: 2025
+  date: 2025-01-16
+  online: 2025-01-16
+  online_basis: crossref_published_online
+  venue: mathematics
+  volume: "13"
+  issue: "2"
+  article_number: "282"
+  doi: 10.3390/math13020282
+  url: https://www.mdpi.com/2227-7390/13/2/282
+  license: CC BY 4.0
+  tags:
+    - differential evolution
+    - fractional order
+    - wind farm layout optimization
+  citations:
+    count: 10
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: zhao2025safety
+  type: journal
+  status: published
+  public: true
+  selected: true
+  theme: hrc
+  title: "Safety-efficiency integrated assembly: The next-stage adaptive task allocation and planning framework for human–robot collaboration"
+  authors:
+    - Ruihan Zhao
+    - Sichen Tao
+    - Pengzhong Li
+  corresponding:
+    - Pengzhong Li
+  corresponding_source: Publisher page, as recorded in SichenTao/academic-homepage (verified 2026-08-31)
+  year: 2025
+  date: 2025-08
+  online: 2025-01-07
+  online_basis: crossref_created
+  venue: rcim
+  volume: "94"
+  article_number: "102942"
+  doi: 10.1016/j.rcim.2024.102942
+  url: https://www.sciencedirect.com/science/article/pii/S0736584524002291
+  tags:
+    - human–robot collaboration
+    - task allocation
+    - safety–efficiency
+    - assembly planning
+  citations:
+    count: 21
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: tao2024artificial
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: vision
+  title: Artificial Visual Network with Fully Modeled Retinal Direction-Selective Neural Pathway for Motion Direction Detection in Grayscale Scenes
+  authors:
+    - Sichen Tao
+    - Ruihan Zhao
+    - Yifei Yang
+    - Hiroyoshi Todo
+    - Zheng Tang
+    - Yuki Todo
+  year: 2024
+  date: 2024-11-28
+  online: 2024-11-28
+  online_basis: crossref_published_online
+  venue: symmetry
+  volume: "16"
+  issue: "12"
+  article_number: "1592"
+  doi: 10.3390/sym16121592
+  url: https://www.mdpi.com/2073-8994/16/12/1592
+  license: CC BY 4.0
+  tags:
+    - artificial visual system
+    - motion direction detection
+  citations:
+    count: 2
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: tao2024competitive
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: ec
+  title: Competitive Elimination Improved Differential Evolution for Wind Farm Layout Optimization Problems
+  authors:
+    - Sichen Tao
+    - Yifei Yang
+    - Ruihan Zhao
+    - Hiroyoshi Todo
+    - Zheng Tang
+  year: 2024
+  date: 2024-11-28
+  online: 2024-11-28
+  online_basis: crossref_published_online
+  venue: mathematics
+  volume: "12"
+  issue: "23"
+  article_number: "3762"
+  doi: 10.3390/math12233762
+  url: https://www.mdpi.com/2227-7390/12/23/3762
+  license: CC BY 4.0
+  tags:
+    - differential evolution
+    - wind farm layout optimization
+  citations:
+    count: 7
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: sun2024improving
+  type: conference
+  status: published
+  public: true
+  selected: false
+  theme: ec
+  title: Improving the Music Harmony Search Using a Differential Exploration Phase for Solving Bound Constrained Optimization Problems
+  authors:
+    - Sha Sun
+    - Ruihan Zhao
+    - Chenxi Wang
+    - Zheng Tang
+    - Sichen Tao
+  year: 2024
+  date: 2024-09-20
+  online: 2024-11-04
+  online_basis: crossref_created
+  venue: itnec
+  pages: 1337-1341
+  doi: 10.1109/itnec60942.2024.10733307
+  url: https://ieeexplore.ieee.org/document/10733307/
+  tags:
+    - harmony search
+    - bound-constrained optimization
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Technical University of Munich
+- id: sun2024differential
+  type: conference
+  status: published
+  public: true
+  selected: false
+  theme: ec
+  title: A Differential Search Integrated Music Harmony Search Algorithm for Solving Bound Constrained Optimization Problems
+  authors:
+    - Sha Sun
+    - Ruihan Zhao
+    - Chenxi Wang
+    - Zheng Tang
+    - Sichen Tao
+  year: 2024
+  date: 2024-07-12
+  online: 2024-10-11
+  online_basis: crossref_published_online
+  venue: spml
+  pages: 231-235
+  doi: 10.1145/3686490.3686524
+  url: https://dl.acm.org/doi/10.1145/3686490.3686524
+  tags:
+    - harmony search
+    - differential search
+    - bound-constrained optimization
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: shoji2024novel
+  type: conference
+  status: published
+  public: true
+  selected: false
+  theme: vision
+  title: A Novel Artificial Visual System with Fully Modeled Retinal Direction-selectivity Ganglion Cell Pathway for Motion Direction Detection in Grayscale Images
+  authors:
+    - Yumekatsu Shoji
+    - Sichen Tao
+    - Yuki Todo
+    - Zheng Tang
+    - Ruihan Zhao
+  year: 2024
+  date: 2024-07-12
+  online: 2024-10-11
+  online_basis: crossref_published_online
+  venue: spml
+  pages: 212-215
+  doi: 10.1145/3686490.3686521
+  url: https://dl.acm.org/doi/10.1145/3686490.3686521
+  tags:
+    - artificial visual system
+    - motion direction detection
+  citations:
+    count: 0
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: tao2024efficient
+  type: preprint
+  status: preprint
+  public: true
+  selected: false
+  theme: ec
+  title: An Efficient Reconstructed Differential Evolution Variant by Some of the Current State-of-the-art Strategies for Solving Single Objective Bound Constrained Problems
+  authors:
+    - Sichen Tao
+    - Ruihan Zhao
+    - Kaiyu Wang
+    - Shangce Gao
+  year: 2024
+  date: 2024-04-25
+  online: 2024-04-25
+  online_basis: arxiv_v1
+  venue: arxiv
+  doi: 10.48550/arXiv.2404.16280
+  url: https://arxiv.org/abs/2404.16280
+  arxiv: "2404.16280"
+  arxiv_primary: cs.NE
+  code: https://github.com/SichenTao/IEEE-WCCI-CEC-2024-Competition-RDE
+  tags:
+    - differential evolution
+    - single-objective optimization
+    - IEEE WCCI 2024
+  citations:
+    count: 3
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: arXiv API
+    checked: 2026-09-26
+  affiliations_on_paper: []
+- id: tao2024novel
+  type: journal
+  status: published
+  public: true
+  selected: true
+  theme: vision
+  title: A novel artificial visual system for motion direction detection in color images
+  authors:
+    - Sichen Tao
+    - Zhiming Zhang
+    - Ruihan Zhao
+    - Zheng Tang
+    - Yuki Todo
+  corresponding:
+    - Yuki Todo
+  corresponding_source: Publisher page, as recorded in SichenTao/academic-homepage (verified 2026-08-31)
+  year: 2024
+  date: 2024-07
+  online: 2024-04-18
+  online_basis: crossref_created
+  venue: kbs
+  volume: "295"
+  article_number: "111816"
+  doi: 10.1016/j.knosys.2024.111816
+  url: https://www.sciencedirect.com/science/article/pii/S0950705124004507
+  tags:
+    - artificial visual system
+    - motion direction detection
+    - color images
+  citations:
+    count: 5
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: zhao2022optimal
+  type: conference
+  status: published
+  public: true
+  selected: false
+  theme: ec
+  title: An Optimal-Parent-Crossover based Differential Evolution
+  authors:
+    - Ruihan Zhao
+    - Sichen Tao
+    - Pengzhong Li
+  year: 2022
+  date: 2022-12
+  online: 2023-02-01
+  online_basis: crossref_created
+  venue: iscid
+  pages: 276-281
+  doi: 10.1109/iscid56505.2022.00068
+  url: https://ieeexplore.ieee.org/document/10029517/
+  tags:
+    - differential evolution
+    - crossover
+  citations:
+    count: 2
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: zhao2022industrial
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: early
+  title: An industrial heterogeneous data based quality management KPI visualization system for product quality control
+  authors:
+    - Ruihan Zhao
+    - Liang Luo
+    - Pengzhong Li
+    - Jinguang Wang
+  year: 2022
+  date: 2022-11-09
+  online: 2022-11-09
+  online_basis: crossref_published_online
+  venue: aa
+  volume: "42"
+  issue: "6"
+  pages: 796-808
+  doi: 10.1108/aa-05-2022-0139
+  url: http://www.emerald.com/ria/article/42/6/796-808/6008
+  tags:
+    - quality management
+    - KPI visualization
+    - industrial heterogeneous data
+  citations:
+    count: 5
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
+- id: li2020geometric
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: early
+  title: A Geometric Accuracy Error Analysis Method for Turn-Milling Combined NC Machine Tool
+  authors:
+    - Pengzhong Li
+    - Ruihan Zhao
+    - Liang Luo
+  year: 2020
+  date: 2020-09-30
+  online: 2020-09-30
+  online_basis: crossref_published_online
+  venue: symmetry
+  volume: "12"
+  issue: "10"
+  article_number: "1622"
+  doi: 10.3390/sym12101622
+  url: https://www.mdpi.com/2073-8994/12/10/1622
+  license: CC BY 4.0
+  tags:
+    - geometric accuracy
+    - turn-milling machine tool
+  citations:
+    count: 9
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - Tongji University
