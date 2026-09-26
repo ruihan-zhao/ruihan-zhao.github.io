@@ -1,0 +1,56 @@
+name: Decode uploaded images
+
+# Images uploaded as base64 text (<name>.<ext>.b64, e.g. through the web editor) are decoded into the
+# binary file next to them; the .b64 file is removed and the site is redeployed.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/assets/img/**.b64"
+      - ".github/workflows/decode-images.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: decode-images
+  cancel-in-progress: false
+
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.decode.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - id: decode
+        run: |
+          shopt -s globstar nullglob
+          files=(scripts/assets/img/**/*.b64)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          for f in "${files[@]}"; do
+            base64 --decode "$f" > "${f%.b64}"
+            git rm --quiet "$f"
+            git add "${f%.b64}"
+            echo "decoded ${f%.b64}"
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Decode uploaded images"
+          git pull --rebase --quiet origin main
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  # Pushes made with GITHUB_TOKEN do not trigger other workflows, so redeploy explicitly.
+  deploy:
+    needs: decode
+    if: needs.decode.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml
