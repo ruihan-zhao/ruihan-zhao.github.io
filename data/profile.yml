@@ -48,7 +48,7 @@ identifiers:
 contact:
   email: ruihan_zhao@tongji.edu.cn # 本人确认 2026-09-26
 
-photo: null # 本人：先空着（2026-09-26）。提供后放到 scripts/assets/img/ 并填写文件名
+photo: ruihan-zhao.jpg # 本人提供（2026-09-26）；文件在 scripts/assets/img/（480×720，已去除元数据）
 
 positions:
   - title: { en: Lecturer, zh: 讲师 }
@@ -57,7 +57,7 @@ positions:
     url: https://cdhaw.tongji.edu.cn/
     ror: https://ror.org/03rc6as71
     current: true
-    start: null # 可选：入职年份
+    start: "2026-01" # 本人确认 2026-09-26
     source: "本人确认 2026-09-26；英文院名见 CDHAW 官方材料"
 
 education:
@@ -66,7 +66,7 @@ education:
     unit: { en: School of Mechanical Engineering, zh: 机械与能源工程学院（现机械工程与机器人学院） }
     start: 2021
     end: 2025
-    advisor: null # 可选
+    advisor: { en: Pengzhong Li, zh: 李鹏忠 } # 本人确认 2026-09-26
     note: 学院 2025 年 12 月公布更名为机械工程与机器人学院；英文官网页脚仍为 "School of Mechanical Engineering"（2026-09-26 核查）。论文署名亦为 School of Mechanical Engineering。
   - degree: { en: Master's, zh: 硕士 }
     org: { en: Tongji University, zh: 同济大学 }
@@ -113,7 +113,31 @@ awards:
       - { label: Official competition repository, url: https://github.com/P-N-Suganthan/2024-CEC }
       - { label: RDE code, url: https://github.com/SichenTao/IEEE-WCCI-CEC-2024-Competition-RDE }
     source: "团队成员身份本人确认（2026-09-26）；名次与日期见 SichenTao/academic-homepage 的 awards / news 记录"
-# 学术服务 / 教学 / 项目：本人暂无（2026-09-26），有了再按 awards 的格式添加 service: / teaching: / projects:
+
+# 科研项目与资助。本人提供（2026-09-26）；period 未知时写 null，页面不显示年份。
+funding:
+  - id: nstmp-2019zx04005-001
+    title:
+      en: Revision of the Machine Tool Design Handbook and Integration of Design Results
+      zh: 机床设计手册修订及设计成果集成
+    program:
+      en: National Science and Technology Major Project of China
+      zh: 国家科技重大专项
+    number: 2019ZX04005-001
+    period: null
+    evidence: "Other publications acknowledge the same project number under the National Science and Technology Major Project 'High-grade CNC Machine Tools and Basic Manufacturing Equipment' (Crossref funder metadata, checked 2026-09-26)"
+  - id: daad-57693450
+    title:
+      en: DAAD Research Grant
+      zh: DAAD Research Grants 资助
+    funder:
+      en: German Academic Exchange Service (DAAD)
+      zh: 德意志学术交流中心（DAAD）
+    number: "57693450"
+    period: null
+    evidence: "Acknowledged in 10.1016/j.aei.2025.103508 (Crossref funder metadata: German Academic Exchange Service, award 57693450)"
+
+# 学术服务 / 教学：本人暂无（2026-09-26），有了再按 awards 的格式添加 service: / teaching:
 
 # 论文署名单位（证据链；JSON-LD 与联系页使用）
 affiliations:
@@ -174,17 +198,17 @@ research:
       zh: 医疗人工智能（合作）
       keywords: [mortality risk prediction, VA-ECMO]
     - id: early
-      en: Manufacturing quality and machine tools (early work)
-      zh: 制造质量与机床精度（早期工作）
-      keywords: [quality management KPI, turn-milling machine tool accuracy]
+      en: Machine tools, fluid power and control (early work)
+      zh: 机床、液压与控制（早期工作）
+      keywords: [quality management KPI, turn-milling machine tool accuracy, hydraulic transformers, robust control, fuzzy control]
 
 # 首页简介（本人口吻草稿，可直接改写）。{pubs} 会替换为论文页链接。
 bio:
   en:
     - >-
-      I am a Lecturer at the Sino-German College of Applied Sciences (CDHAW), Tongji University.
-      I received my Ph.D. from Tongji University in 2025 and my master's degree from Tongji's
-      Sino-German School for Postgraduate Studies in 2021, advised by Pengzhong Li. In 2024, I was a
+      Since January 2026, I have been a Lecturer at the Sino-German College of Applied Sciences (CDHAW),
+      Tongji University. I received my Ph.D. from Tongji University in 2025 and my master's degree from
+      Tongji's Sino-German School for Postgraduate Studies in 2021, both advised by Pengzhong Li. In 2024, I was a
       visiting Ph.D. student (joint doctoral training) at the Professorship of Autonomous Vehicle
       Systems (AVS), Technical University of Munich, hosted by Prof. Johannes Betz.
     - "@research"
@@ -194,7 +218,7 @@ bio:
       Recent first-author papers appear in Applied Soft Computing, Advanced Engineering Informatics,
       and Robotics and Computer-Integrated Manufacturing; the full record is on the {pubs}.
   zh:
-    - "我是同济大学中德工程学院讲师。2025 年在同济大学获博士学位，2021 年在同济大学中德学院获硕士学位（导师：李鹏忠）。2024 年在慕尼黑工业大学 Autonomous Vehicle Systems（AVS）教席联合培养，合作导师为 Johannes Betz 教授。"
+    - "我自 2026 年 1 月起任同济大学中德工程学院讲师。2025 年在同济大学获博士学位，2021 年在同济大学中德学院获硕士学位，导师均为李鹏忠。2024 年在慕尼黑工业大学 Autonomous Vehicle Systems（AVS）教席联合培养，合作导师为 Johannes Betz 教授。"
     - "@research"
     - "我是 RDEx 团队成员，该团队获 IEEE CEC 2025 数值优化竞赛四个赛道全部第一；也是 RDE 团队成员，获 IEEE WCCI 2024 数值优化竞赛银奖。近期一作论文发表于 Applied Soft Computing、Advanced Engineering Informatics 和 Robotics and Computer-Integrated Manufacturing，完整列表见{pubs}。"
 
