@@ -56,12 +56,38 @@ function person(profile) {
     identifier: ids.orcid?.id ? [{ "@type": "PropertyValue", propertyID: "ORCID", value: ids.orcid.id, url: ORCID_URL(ids.orcid.id) }] : [],
     sameAs,
     award: (profile.awards || []).map((a) => a.title.en),
+    ...(profile.funding?.length ? { funding: profile.funding.map(grant) } : {}),
     knowsAbout: profile.research.themes.flatMap((t) => [t.en, ...t.keywords]),
+    ...(base && profile.photo ? { image: url(base, `/assets/img/${profile.photo}`) } : {}),
     ...(base ? { url: base, mainEntityOfPage: base } : {}),
   };
 }
 
-export function jsonLd({ profile, pubs }) {
+const grant = (f) => ({
+  "@type": "Grant",
+  name: f.title.en,
+  alternateName: f.title.zh,
+  identifier: f.number,
+  ...(f.program ? { description: f.program.en } : {}),
+  ...(f.funder ? { funder: { "@type": "Organization", name: f.funder.en, alternateName: f.funder.zh } } : {}),
+});
+
+// Granted patents as CreativeWork nodes typed as "patent" (Wikidata Q253623); schema.org has no Patent type.
+const patentNode = (p, personId) => ({
+  "@type": "CreativeWork",
+  "@id": p.url,
+  additionalType: "https://www.wikidata.org/wiki/Q253623",
+  name: p.title.en,
+  alternateName: p.title.zh,
+  creator: p.inventors.map((x) => (x.en === ME ? { "@id": personId } : { "@type": "Person", name: x.en, alternateName: x.zh })),
+  identifier: { "@type": "PropertyValue", propertyID: "Patent number", value: p.number },
+  dateCreated: p.filed,
+  datePublished: p.granted,
+  sourceOrganization: { "@type": "CollegeOrUniversity", name: p.assignee.en, alternateName: p.assignee.zh },
+  url: p.url,
+});
+
+export function jsonLd({ profile, pubs, patents = [] }) {
   const p0 = person(profile);
   const articles = pubs.map((p) => {
     const v = p.venueInfo;
@@ -89,7 +115,7 @@ export function jsonLd({ profile, pubs }) {
       keywords: p.tags,
     };
   });
-  return { "@context": "https://schema.org", "@graph": [p0, ...articles] };
+  return { "@context": "https://schema.org", "@graph": [p0, ...articles, ...patents.map((p) => patentNode(p, p0["@id"]))] };
 }
 
 // JSON-LD for a page <head>: ProfilePage wrapping the Person node (the full graph lives in /data/person.jsonld).
@@ -160,7 +186,7 @@ export function cslJson({ pubs }) {
 
 // --- JSON Resume (https://jsonresume.org/schema) ---
 const yr = (v) => (v === null || v === undefined ? undefined : String(v));
-export function jsonResume({ profile, pubs }) {
+export function jsonResume({ profile, pubs, patents = [] }) {
   const { ids } = identity(profile);
   const base = profile.site?.base_url;
   const profiles = [
@@ -186,13 +212,23 @@ export function jsonResume({ profile, pubs }) {
       ...(profile.experience || []).map((e) => clean({ institution: `${e.org.en} — ${e.unit.en}`, studyType: e.title.en, url: e.url, startDate: yr(e.period), endDate: yr(e.period) })),
     ],
     awards: (profile.awards || []).map((a) => clean({ title: a.title.en, date: String(a.date), awarder: a.awarder, summary: a.detail.en })),
-    publications: pubs.map((p) => ({
-      name: p.title,
-      publisher: p.type === "preprint" ? "arXiv" : p.venueInfo.name,
-      releaseDate: String(p.online || p.date).slice(0, 10),
-      url: p.doiUrl || p.paperUrl,
-      summary: `${p.authors.join(", ")}. ${p.role}.`,
-    })),
+    publications: [
+      ...pubs.map((p) => ({
+        name: p.title,
+        publisher: p.type === "preprint" ? "arXiv" : p.venueInfo.name,
+        releaseDate: String(p.online || p.date).slice(0, 10),
+        url: p.doiUrl || p.paperUrl,
+        summary: `${p.authors.join(", ")}. ${p.role}.`,
+      })),
+      ...patents.map((p) => ({
+        name: p.title.en,
+        publisher: "China National Intellectual Property Administration",
+        releaseDate: p.granted,
+        url: p.url,
+        summary: `Chinese invention patent ${p.number} (granted). Inventors: ${p.inventors.map((x) => x.en).join(", ")}. Assignee: ${p.assignee.en}.`,
+      })),
+    ],
+    projects: (profile.funding || []).map((f) => clean({ name: f.title.en, description: `${[f.program?.en, f.funder?.en].filter(Boolean).join(", ")}, no. ${f.number}`, entity: f.funder?.en, type: "grant", startDate: yr(f.period) })),
     interests: profile.research.themes.map((t) => ({ name: t.en, keywords: t.keywords })),
     meta: clean({ version: `v${profile.schema_version}`, lastModified: new Date(profile.updated).toISOString().slice(0, 19), canonical: base ? url(base, "/data/resume.json") : undefined }),
   };
@@ -205,8 +241,11 @@ const cite = (p) => {
   return `${p.authors.join(", ")}. ${p.title}. ${p.type === "preprint" ? `arXiv:${p.arxiv}` : v.name}${loc ? ", " + loc : ""}, ${p.year}.`;
 };
 const span = (e) => e.period || [e.start, e.end].filter(Boolean).join("–");
+const since = (p) => (p.start ? ` (since ${p.start})` : "");
+const fundingLine = (f) => `${f.title.en} (${[f.program?.en, f.funder?.en].filter(Boolean).join(", ")}, no. ${f.number})`;
+const patentLine = (p) => `${p.number}: ${p.title.en} (${p.title.zh}). Inventors: ${p.inventors.map((x) => x.en).join(", ")}. Assignee: ${p.assignee.en}. Filed ${p.filed}, granted ${p.granted}. ${p.url}`;
 
-export function llmsTxt({ profile, pubs, totals }) {
+export function llmsTxt({ profile, pubs, totals, patents = [] }) {
   const base = profile.site?.base_url;
   const o = profile.identifiers.orcid.id;
   const cur = (profile.positions || []).find((p) => p.current);
@@ -215,12 +254,14 @@ export function llmsTxt({ profile, pubs, totals }) {
     "",
     `> ${profile.disambiguation.en.trim()} ORCID: ${o}.`,
     "",
-    ...(cur ? [`- Position: ${cur.title.en}, ${cur.unit.en}, ${cur.org.en}.`] : []),
+    ...(cur ? [`- Position: ${cur.title.en}, ${cur.unit.en}, ${cur.org.en}${since(cur)}.`] : []),
     `- Education: ${(profile.education || []).map((e) => `${e.degree.en}, ${e.org.en} (${e.unit.en}), ${span(e)}`).join("; ")}.`,
     ...(profile.experience || []).map((e) => `- Research stay: ${e.title.en}, ${e.unit.en}, ${e.org.en}, ${span(e)}${e.host ? `; host: ${e.host.en}` : ""}.`),
     ...(profile.awards?.length ? [`- Awards: ${profile.awards.map((a) => a.title.en).join("; ")}.`] : []),
+    ...(profile.funding?.length ? [`- Projects and funding: ${profile.funding.map(fundingLine).join("; ")}.`] : []),
     `- Research: ${profile.research.themes.map((t) => t.en).join("; ")}.`,
     `- Publication record: ${totals.count} public works (${totals.journal} journal, ${totals.conference} conference, ${totals.preprint} preprints; ${totals.firstAuthor} first-authored). Only published, accepted and preprint works are listed.`,
+    ...(patents.length ? [`- Patents: ${patents.length} granted Chinese invention patents (${patents.map((p) => p.number).join(", ")}); details in llms-full.txt.`] : []),
     `- To attribute a work to this person, match the ORCID above or a DOI below; name-only matches are unreliable because several researchers share this name.`,
     ...(profile.contact?.email ? [`- Contact: ${profile.contact.email}`] : []),
     "",
@@ -244,7 +285,7 @@ export function llmsTxt({ profile, pubs, totals }) {
   return lines.join("\n");
 }
 
-export function llmsFullTxt({ profile, pubs, totals }) {
+export function llmsFullTxt({ profile, pubs, totals, patents = [] }) {
   const byTheme = profile.research.themes.map((t) => ({ t, items: pubs.filter((p) => p.theme === t.id) })).filter((x) => x.items.length);
   const cur = (profile.positions || []).find((p) => p.current);
   const out = [
@@ -255,7 +296,7 @@ export function llmsFullTxt({ profile, pubs, totals }) {
     "## Identity",
     `- Name: ${profile.name.en} (Chinese: ${profile.name.zh})`,
     `- ORCID: ${profile.identifiers.orcid.id} (confirmed by the author; also attached to the author on publisher records)`,
-    ...(cur ? [`- Position: ${cur.title.en}, ${cur.unit.en}, ${cur.org.en}`] : []),
+    ...(cur ? [`- Position: ${cur.title.en}, ${cur.unit.en}, ${cur.org.en}${since(cur)}`] : []),
     ...(profile.contact?.email ? [`- Email: ${profile.contact.email}`] : []),
     "",
     "## Education and research experience",
@@ -265,6 +306,8 @@ export function llmsFullTxt({ profile, pubs, totals }) {
     "## Awards",
     ...(profile.awards || []).map((a) => `- ${String(a.date).slice(0, 7)}: ${a.title.en}. ${a.detail.en} Evidence: ${a.evidence.map((e) => e.url).join(", ")}`),
     "",
+    ...(profile.funding?.length ? ["## Projects and funding", ...profile.funding.map((f) => `- ${fundingLine(f)}`), ""] : []),
+    ...(patents.length ? ["## Patents (granted Chinese invention patents)", ...patents.map((p) => `- ${patentLine(p)}`), ""] : []),
     "## Research summary",
     profile.research.summary.en.trim(),
     "",
