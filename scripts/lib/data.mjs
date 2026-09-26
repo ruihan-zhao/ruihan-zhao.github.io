@@ -10,8 +10,8 @@ const FORBIDDEN_STATUS = new Set(["submitted", "under_review", "in_review", "in_
 const load = async (f) => YAML.parse(await readFile(path.join(ROOT, "data", f), "utf8"));
 
 export async function loadData() {
-  const [profile, publications, venues, news] = await Promise.all(["profile.yml", "publications.yml", "venues.yml", "news.yml"].map(load));
-  const problems = validate({ profile, publications, venues, news });
+  const [profile, publications, venues, news, patentList] = await Promise.all(["profile.yml", "publications.yml", "venues.yml", "news.yml", "patents.yml"].map(load));
+  const problems = validate({ profile, publications, venues, news, patents: patentList || [] });
   const pubs = publications
     .filter((p) => p.public)
     .map((p) => normalizePub(p, venues))
@@ -22,6 +22,9 @@ export async function loadData() {
   const newsItems = news
     .map((n) => ({ ...n, date: String(n.date), refs: (n.pubs || (n.pub ? [n.pub] : [])).map((id) => byId[id]), awardRef: n.award ? awardById[n.award] : null }))
     .sort((a, b) => b.date.localeCompare(a.date));
+  const patents = (patentList || [])
+    .map((p) => ({ ...p, filed: String(p.filed), granted: String(p.granted) }))
+    .sort((a, b) => b.granted.localeCompare(a.granted));
   const totals = {
     count: pubs.length,
     journal: pubs.filter((p) => p.type === "journal").length,
@@ -31,7 +34,7 @@ export async function loadData() {
     citations: pubs.reduce((s, p) => s + (p.citations?.count || 0), 0),
     citationsChecked: pubs.map((p) => p.citations?.checked).filter(Boolean).sort().at(-1),
   };
-  return { profile, pubs, byId, venues, news: newsItems, awards, totals, problems };
+  return { profile, pubs, byId, venues, news: newsItems, awards, patents, totals, problems };
 }
 
 function normalizePub(p, venues) {
@@ -75,7 +78,7 @@ export function pendingItems(profile) {
   return out;
 }
 
-export function validate({ profile, publications, venues, news }) {
+export function validate({ profile, publications, venues, news, patents = [] }) {
   const errors = [], warnings = [];
   const ids = new Set();
   const themes = new Set(profile.research.themes.map((t) => t.id));
@@ -106,6 +109,22 @@ export function validate({ profile, publications, venues, news }) {
     for (const id of n.pubs || (n.pub ? [n.pub] : [])) if (!ids.has(id)) errors.push(`news ${n.date}: unknown publication "${id}"`);
     if (n.award && !awardIds.has(n.award)) errors.push(`news ${n.date}: unknown award "${n.award}"`);
     if (!n.en || !n.zh) errors.push(`news ${n.date}: needs both en and zh text`);
+  }
+  const patentIds = new Set();
+  for (const p of patents) {
+    const where = `patent ${p.id}`;
+    if (patentIds.has(p.id)) errors.push(`${where}: duplicate id`);
+    patentIds.add(p.id);
+    if (p.status !== "granted") errors.push(`${where}: only granted patents belong in the public data layer`);
+    if (!/^[A-Z]{2}\d+[A-Z]\d?$/.test(p.number || "")) errors.push(`${where}: unexpected patent number "${p.number}"`);
+    if (!p.title?.en || !p.title?.zh) errors.push(`${where}: needs title.en and title.zh`);
+    const mine = (p.inventors || []).filter((x) => x.en === ME).length;
+    if (mine !== 1) errors.push(`${where}: "${ME}" must appear exactly once among the inventors (found ${mine})`);
+    if (!p.filed || !p.granted) errors.push(`${where}: needs filed and granted dates`);
+  }
+  for (const f of profile.funding || []) {
+    if (!f.title?.en || !f.title?.zh || !f.number) errors.push(`funding ${f.id}: needs title.en, title.zh and number`);
+    if (!f.program && !f.funder) errors.push(`funding ${f.id}: needs a program or a funder`);
   }
   if (!profile.identifiers?.orcid?.confirmed_by_user) warnings.push("ORCID not yet confirmed by the author");
   const selected = publications.filter((p) => p.selected).length;
