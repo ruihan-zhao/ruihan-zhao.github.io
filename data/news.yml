@@ -1,0 +1,38 @@
+# news.yml — 动态。每条要么引用 publications.yml 的论文（pub/pubs，日期取在线日期），
+# 要么引用 profile.yml 的奖项（award），要么带 source 链接。不写无证据的内容。
+- date: 2026-08-13
+  pub: gao2026fomoead
+  en: Co-authored paper on three-objective wind farm layout optimization published in the IEEE ICCNSE 2026 proceedings.
+  zh: 合作论文（三目标风电场布局优化）收录于 IEEE ICCNSE 2026 会议论文集。
+- date: 2026-05-14
+  pub: zhao2026adaptive
+  en: First-author paper on adaptive product family formation for shared human–robot collaborative assembly published in Applied Soft Computing.
+  zh: 一作论文（共享人机协作系统中的自适应产品族构建）发表于 Applied Soft Computing。
+- date: 2026-04-04
+  pubs: [tao2026rdexsop, tao2026rdexcsop, tao2026rdexmop, tao2026rdexcmop]
+  en: Four technical reports on the RDEx differential evolution series (SOP, CSOP, MOP, CMOP) released on arXiv.
+  zh: RDEx 差分进化系列四篇技术报告（SOP / CSOP / MOP / CMOP）发布于 arXiv。
+- date: 2025-09-04
+  pub: zhao2025resource
+  en: First-author paper on human–robot collaborative resource and task planning published in the IEEE RCAR 2025 proceedings.
+  zh: 一作论文（人机协作资源与任务规划）收录于 IEEE RCAR 2025 会议论文集。
+- date: 2025-06-17
+  pub: zhao2025humancentric
+  en: First-author paper on a human-centric assembly planning framework published in Advanced Engineering Informatics.
+  zh: 一作论文（以人为本的人机协作装配规划框架）发表于 Advanced Engineering Informatics。
+- date: 2025-06-12
+  award: cec2025
+  en: Our RDEx team won first place in all four numerical optimization tracks of the IEEE CEC 2025 competitions.
+  zh: 所在 RDEx 团队获 IEEE CEC 2025 数值优化竞赛四个赛道全部第一。
+- date: 2025-03-26
+  pub: wang2025aipowered
+  en: Co-authored paper on AI-based mortality risk prediction for VA-ECMO patients published in Scientific Reports.
+  zh: 合作论文（VA-ECMO 患者死亡风险的 AI 预测模型）发表于 Scientific Reports。
+- date: 2025-01-07
+  pub: zhao2025safety
+  en: First-author paper on safety–efficiency integrated task allocation for human–robot collaboration published in Robotics and Computer-Integrated Manufacturing.
+  zh: 一作论文（安全—效率一体化的人机协作任务分配与规划）发表于 Robotics and Computer-Integrated Manufacturing。
+- date: 2024-06-30
+  award: wcci2024
+  en: Our RDE team received a silver award at the IEEE WCCI 2024 numerical optimization competition.
+  zh: 所在 RDE 团队获 IEEE WCCI 2024 数值优化竞赛银奖。
