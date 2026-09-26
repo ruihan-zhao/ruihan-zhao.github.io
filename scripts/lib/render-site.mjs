@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { esc, T, authorsHtml, venueLine, metricsLine, emailLink, obfuscate } from "./html.mjs";
 import { bibtexEntry, pageJsonLd } from "./exports.mjs";
-import { ROOT } from "./data.mjs";
+import { ROOT, ME } from "./data.mjs";
 
 const SLUGS = ["about", "news", "publications", "awards", "cv", "contact"];
 const dirOf = (lang, slug) => `${lang === "zh" ? "zh/" : ""}${slug === "about" ? "" : slug + "/"}`;
@@ -21,6 +21,19 @@ const ORCID_SVG = readFileSync(path.join(ROOT, "scripts/assets/orcid-icon.svg"),
   .replace(/<svg[^>]*>/, '<svg class="icon" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">');
 const MAIL_SVG = `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`;
 const THEME_SVG = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>`;
+
+// Pixel size of a JPEG or PNG in scripts/assets/img, for the width/height attributes (null if unreadable).
+function imageSize(file) {
+  const b = readFileSync(path.join(ROOT, "scripts/assets/img", file));
+  if (b.toString("ascii", 1, 4) === "PNG") return { width: b.readUInt32BE(16), height: b.readUInt32BE(20) };
+  for (let i = 2; i + 8 < b.length; ) {
+    if (b[i] !== 0xff) return null;
+    const m = b[i + 1];
+    if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) return { width: b.readUInt16BE(i + 7), height: b.readUInt16BE(i + 5) };
+    i += 2 + b.readUInt16BE(i + 2);
+  }
+  return null;
+}
 
 export function renderSite(data, metricsSource) {
   const pages = [];
@@ -55,7 +68,7 @@ function page(data, lang, slug, metricsSource) {
 ${base ? `<link rel="canonical" href="${abs(lang, slug)}">` : ""}
 <link rel="alternate" hreflang="en" href="${abs("en", slug)}"><link rel="alternate" hreflang="zh-CN" href="${abs("zh", slug)}"><link rel="alternate" hreflang="x-default" href="${abs("en", slug)}">
 <link rel="alternate" type="text/plain" title="llms.txt" href="${root}llms.txt">
-<meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="${slug === "about" ? "profile" : "website"}"><meta property="og:locale" content="${zh ? "zh_CN" : "en_US"}">${base ? `<meta property="og:url" content="${abs(lang, slug)}">` : ""}
+<meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="${slug === "about" ? "profile" : "website"}"><meta property="og:locale" content="${zh ? "zh_CN" : "en_US"}">${base ? `<meta property="og:url" content="${abs(lang, slug)}">` : ""}${base && profile.photo ? `<meta property="og:image" content="${base}/assets/img/${esc(profile.photo)}">` : ""}
 <meta name="theme-color" content="#1d4f91">
 <link rel="stylesheet" href="${root}assets/site.css">
 <script type="application/ld+json">${JSON.stringify(pageJsonLd(data, base ? abs(lang, slug) : null)).replace(/</g, "\\u003c")}</script>
@@ -84,8 +97,9 @@ function card(p, { lang, t, root, metricsSource }, { searchable = false } = {}) 
   const v = p.venueInfo;
   const badge = v.url ? `<a class="pub-badge" href="${esc(v.url)}" title="${esc(v.name)}">${esc(v.abbr)}</a>` : `<span class="pub-badge" title="${esc(v.name)}">${esc(v.abbr)}</span>`;
   const search = [p.title, p.authors.join(" "), v.name, v.abbr, p.year, p.tags.join(" ")].join(" ").toLowerCase();
+  const figLabel = p.preview_figure ? (lang === "zh" ? `论文图 ${p.preview_figure}` : `Fig. ${p.preview_figure} of the paper`) : lang === "zh" ? "论文原图" : "Original paper figure";
   const side = p.preview
-    ? `<figure class="pub-fig">${badge}<img src="${root}${esc(p.preview)}" alt="${esc(p.preview_alt || p.title)}" width="240" height="160" loading="lazy"><figcaption>${lang === "zh" ? "论文原图" : "Original paper figure"}</figcaption></figure>`
+    ? `<figure class="pub-fig">${badge}<img src="${root}${esc(p.preview)}" alt="${esc(p.preview_alt || p.title)}" width="240" height="160" loading="lazy"><figcaption>${figLabel}</figcaption></figure>`
     : `<div class="pub-side">${badge}</div>`;
   return `<article class="pub${p.preview ? " has-fig" : ""}"${searchable ? ` data-entry data-search="${esc(search)}" data-theme="${p.theme}" data-type="${p.type}" data-first="${p.position === 1 ? 1 : 0}"` : ""}>
   ${side}
@@ -115,11 +129,12 @@ function about(ctx) {
   const { profile, pubs, news } = data;
   const pubsLink = `<a href="${href(lang, "publications")}">${zh ? "论文页" : "publications page"}</a>`;
   const paras = profile.bio[lang].map((x) => (x.trim() === "@research" ? esc(profile.research.summary[lang].trim()) : esc(x.trim()).replace("{pubs}", pubsLink)));
+  const photo = profile.photo ? imageSize(profile.photo) : null;
   return `<header class="post-header">
   <h1 class="post-title"><b>${esc(profile.name.given)}</b> ${esc(profile.name.family)}${profile.name.zh ? ` <span class="native" lang="zh-CN">${esc(profile.name.zh)}</span>` : ""}</h1>
   <p class="desc">${esc(profile.headline[lang])}</p>
 </header>
-${profile.photo ? `<div class="profile"><img src="${root}assets/img/${esc(profile.photo)}" alt="${esc(profile.name[lang])}" width="400" height="400"></div>` : ""}
+${profile.photo ? `<div class="profile"><img src="${root}assets/img/${esc(profile.photo)}" alt="${esc(profile.name[lang])}"${photo ? ` width="${photo.width}" height="${photo.height}"` : ""}></div>` : ""}
 <div class="bio">
   ${paras.map((p) => `<p>${p}</p>`).join("\n  ")}
   ${idsLine(profile, zh)}
@@ -172,19 +187,25 @@ function awards({ data, lang, zh }) {
 }
 
 function cv({ data, lang, t, zh, href }) {
-  const { profile, totals } = data;
+  const { profile, totals, patents } = data;
   const years = (e) => e.period || [e.start, e.end].filter(Boolean).join("–");
-  const pos = profile.positions.map((p) => `<tr><th scope="row">${p.current ? (zh ? "现任" : "Current") : esc(years(p))}</th><td><p><strong>${esc(p.title[lang])}</strong></p><p class="sub">${place(p, lang)}</p></td></tr>`).join("");
+  const since = (p) => (p.start ? (zh ? `${String(p.start).slice(0, 4)} 年至今` : `${String(p.start).slice(0, 4)}–present`) : zh ? "现任" : "Current");
+  const pos = profile.positions.map((p) => `<tr><th scope="row">${p.current ? since(p) : esc(years(p))}</th><td><p><strong>${esc(p.title[lang])}</strong></p><p class="sub">${place(p, lang)}</p></td></tr>`).join("");
   const edu = profile.education.map((e) => `<tr><th scope="row">${esc(years(e))}</th><td><p><strong>${esc(e.degree[lang])}</strong>${zh ? "，" : ", "}${esc(e.org[lang])}</p><p class="sub">${esc(e.unit[lang])}${e.advisor ? (zh ? `；导师：${esc(e.advisor.zh)}` : `; advisor: ${esc(e.advisor.en)}`) : ""}</p></td></tr>`).join("");
   const exp = profile.experience.map((e) => `<tr><th scope="row">${esc(years(e))}</th><td><p><strong>${esc(e.title[lang])}</strong>${zh ? "，" : ", "}${esc(e.org[lang])}</p><p class="sub"><a href="${esc(e.url)}">${esc(e.unit[lang])}</a>${e.host ? (zh ? `；合作导师：${esc(e.host.zh)}` : `; host: ${esc(e.host.en)}`) : ""}</p></td></tr>`).join("");
   const aw = data.awards.map((a) => `<tr><th scope="row">${String(a.date).slice(0, 4)}</th><td><p>${esc(a.title[lang])}</p></td></tr>`).join("");
+  const fund = (profile.funding || []).map((f) => `<tr><th scope="row">${f.period ? esc(f.period) : ""}</th><td><p><strong>${esc(f.title[lang])}</strong></p><p class="sub">${[f.program, f.funder].filter(Boolean).map((x) => esc(x[lang])).join(zh ? "，" : ", ")}${zh ? "，编号 " : ", no. "}${esc(f.number)}</p></td></tr>`).join("");
+  const inventors = (p) => p.inventors.map((x) => (x.en === ME ? `<span class="me">${esc(x[lang])}</span>` : esc(x[lang]))).join(zh ? "，" : ", ");
+  const pat = patents.map((p) => `<tr><th scope="row">${p.granted.slice(0, 4)}</th><td><p><strong>${esc(p.title[lang])}</strong></p><p class="sub">${inventors(p)}</p><p class="sub">${zh ? `中国发明专利 <a href="${esc(p.url)}">${esc(p.number)}</a>，${esc(p.granted)} 授权；专利权人：${esc(p.assignee.zh)}` : `Chinese invention patent <a href="${esc(p.url)}">${esc(p.number)}</a>, granted ${fmtDate(p.granted, lang)}; assignee: ${esc(p.assignee.en)}`}</p></td></tr>`).join("");
   return `<header class="post-header"><h1 class="post-title">${t.cv}</h1><p class="desc">${esc(profile.name[lang])} · ${esc(profile.headline[lang])}</p></header>
 <h2>${zh ? "职位" : "positions"}</h2><table class="rows">${pos}</table>
 <h2>${zh ? "教育经历" : "education"}</h2><table class="rows">${edu}</table>
 <h2>${zh ? "研究经历" : "research experience"}</h2><table class="rows">${exp}</table>
+${fund ? `<h2>${zh ? "科研项目与资助" : "projects and funding"}</h2><table class="rows">${fund}</table>` : ""}
 <h2><a href="${href(lang, "awards")}">${zh ? "奖励" : "awards"}</a></h2><table class="rows">${aw}</table>
 <h2><a href="${href(lang, "publications")}">${zh ? "论文" : "publications"}</a></h2>
-<p>${zh ? `公开论文 ${totals.count} 篇：期刊 ${totals.journal}、会议 ${totals.conference}、预印本 ${totals.preprint}；其中一作 ${totals.firstAuthor} 篇。` : `${totals.count} public works: ${totals.journal} journal articles, ${totals.conference} conference papers and ${totals.preprint} preprints; ${totals.firstAuthor} first-authored.`}</p>`;
+<p>${zh ? `公开论文 ${totals.count} 篇：期刊 ${totals.journal}、会议 ${totals.conference}、预印本 ${totals.preprint}；其中一作 ${totals.firstAuthor} 篇。` : `${totals.count} public works: ${totals.journal} journal articles, ${totals.conference} conference papers and ${totals.preprint} preprints; ${totals.firstAuthor} first-authored.`}</p>
+${pat ? `<h2 id="patents">${zh ? "授权专利" : "patents"}</h2><table class="rows">${pat}</table>` : ""}`;
 }
 
 function contact({ data, lang, zh }) {
