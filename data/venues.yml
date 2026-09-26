@@ -1,0 +1,134 @@
+# venues.yml — 期刊/会议元数据。
+# 指标规则（与 Sichen Tao 主页一致）：按论文发表年份取“当年或最近一次已核验”的指标，每个数值标注自身年份。
+#   metrics[].for_years 列出适用的论文发表年份；没有匹配项的论文只显示引用数（如会议论文、早期论文）。
+#   cas（中科院分区）只作记录，页面不逐篇显示。
+# 数据来源：SichenTao/academic-homepage 的逐篇核验记录（2026-08-31）；本人确认按此口径展示（2026-09-26）。
+metrics_source: "SichenTao/academic-homepage verification records (checked 2026-08-31); adopted by the author on 2026-09-26"
+
+rcim:
+  name: Robotics and Computer-Integrated Manufacturing
+  abbr: RCIM
+  kind: journal
+  publisher: Elsevier
+  issn: 0736-5845
+  url: https://www.sciencedirect.com/journal/robotics-and-computer-integrated-manufacturing
+  metrics:
+    - for_years: [2025]
+      jcr: { quartile: Q1, year: 2025 }
+      if: { value: 11.4, year: 2025 }
+      citescore: { value: 27.6, year: 2025 }
+      cas: { quartile: Q1, year: 2022 }
+aei:
+  name: Advanced Engineering Informatics
+  abbr: AEI
+  kind: journal
+  publisher: Elsevier
+  issn: 1474-0346
+  url: https://www.sciencedirect.com/journal/advanced-engineering-informatics
+  metrics:
+    - for_years: [2025]
+      jcr: { quartile: Q1, year: 2025, top10: true }
+      if: { value: 9.9, year: 2025 }
+      citescore: { value: 15.8, year: 2025 }
+      cas: { quartile: Q1, year: 2025, top: true }
+asoc:
+  name: Applied Soft Computing
+  abbr: ASOC
+  kind: journal
+  publisher: Elsevier
+  issn: 1568-4946
+  url: https://www.sciencedirect.com/journal/applied-soft-computing
+  metrics:
+    # 2026 年论文：最近一次已核验的是 2024 年指标
+    - for_years: [2024, 2025, 2026]
+      jcr: { quartile: Q1, year: 2024 }
+      if: { value: 6.6, year: 2024 }
+      citescore: { value: 14.5, year: 2024 }
+      cas: { quartile: Q1, year: 2022 }
+kbs:
+  name: Knowledge-Based Systems
+  abbr: KBS
+  kind: journal
+  publisher: Elsevier
+  issn: 0950-7051
+  url: https://www.sciencedirect.com/journal/knowledge-based-systems
+  metrics:
+    - for_years: [2024]
+      jcr: { quartile: Q1, year: 2024 }
+      if: { value: 7.6, year: 2024 }
+      citescore: { value: 15.8, year: 2024 }
+      cas: { quartile: Q1, year: 2022 }
+scirep:
+  name: Scientific Reports
+  abbr: Sci. Rep.
+  kind: journal
+  publisher: Springer Nature
+  issn: 2045-2322
+  url: https://www.nature.com/srep/
+  metrics:
+    - for_years: [2025]
+      jcr: { quartile: Q1, year: 2023 }
+      if: { value: 3.8, year: 2024 }
+      cas: { quartile: Q2, year: 2022 }
+mathematics:
+  name: Mathematics
+  abbr: Mathematics
+  kind: journal
+  publisher: MDPI
+  issn: 2227-7390
+  url: https://www.mdpi.com/journal/mathematics
+  metrics:
+    - for_years: [2024, 2025]
+      jcr: { quartile: Q1, year: 2024 }
+      if: { value: 2.3, year: 2024 }
+symmetry:
+  name: Symmetry
+  abbr: Symmetry
+  kind: journal
+  publisher: MDPI
+  issn: 2073-8994
+  url: https://www.mdpi.com/journal/symmetry
+  metrics:
+    - for_years: [2024]
+      jcr: { quartile: Q2, year: 2023 }
+      if: { value: 2.2, year: 2024 }
+      cas: { quartile: Q3, year: 2022 }
+aa:
+  name: Assembly Automation
+  abbr: AA
+  kind: journal
+  publisher: Emerald
+  issn: 0144-5154
+  note: Renamed "Robotic Intelligence and Automation" from 2023 (vol. 43).
+  url: https://www.emerald.com/insight/publication/issn/0144-5154
+rcar:
+  name: IEEE International Conference on Real-time Computing and Robotics (RCAR 2025)
+  abbr: IEEE RCAR
+  kind: conference
+  publisher: IEEE
+itnec:
+  name: IEEE Information Technology, Networking, Electronic and Automation Control Conference (ITNEC 2024)
+  abbr: IEEE ITNEC
+  kind: conference
+  publisher: IEEE
+spml:
+  name: International Conference on Signal Processing and Machine Learning (SPML 2024)
+  abbr: ACM SPML
+  kind: conference
+  publisher: ACM
+iscid:
+  name: International Symposium on Computational Intelligence and Design (ISCID 2022)
+  abbr: ISCID
+  kind: conference
+  publisher: IEEE
+iccnse:
+  name: International Conference on Communication Networks and Smart Systems Engineering (ICCNSE 2026)
+  abbr: ICCNSE
+  kind: conference
+  publisher: IEEE
+arxiv:
+  name: arXiv
+  abbr: arXiv
+  kind: preprint
+  publisher: Cornell University
+  url: https://arxiv.org
