@@ -279,6 +279,10 @@
   article_number: "103508"
   doi: 10.1016/j.aei.2025.103508
   url: https://www.sciencedirect.com/science/article/pii/S147403462500401X
+  preview: assets/img/pubs/zhao2025humancentric.png
+  preview_figure: 1
+  preview_alt: "Fig. 1 of the paper: the human-centric HRC assembly problem is encoded for a co-evolutionary optimizer (double-segment chromosome, GA and DE operators, constrained selection) that is steered by a reinforcement self-learning module"
+  preview_source: "Fig. 1 of the paper; image file from SichenTao/academic-homepage (assets/img/publication_preview, commit 8a21c84), resized"
   tags:
     - human–robot collaboration
     - assembly planning
@@ -437,6 +441,10 @@
   article_number: "102942"
   doi: 10.1016/j.rcim.2024.102942
   url: https://www.sciencedirect.com/science/article/pii/S0736584524002291
+  preview: assets/img/pubs/zhao2025safety.png
+  preview_figure: 1
+  preview_alt: "Fig. 1 of the paper: speed and separation monitoring (SSM) versus power and force limiting (PFL), showing the robot speed regions around a human co-worker"
+  preview_source: "Fig. 1 of the paper; image file from SichenTao/academic-homepage (assets/img/publication_preview, commit 8a21c84), resized"
   tags:
     - human–robot collaboration
     - task allocation
@@ -683,6 +691,10 @@
   article_number: "111816"
   doi: 10.1016/j.knosys.2024.111816
   url: https://www.sciencedirect.com/science/article/pii/S0950705124004507
+  preview: assets/img/pubs/tao2024novel.jpg
+  preview_figure: 1
+  preview_alt: "Fig. 1 of the paper: light from color images passes through the layered retina (photoreceptor, horizontal, bipolar, amacrine and direction-selective ganglion cells) to the visual cortex, which reports the global motion direction"
+  preview_source: "Fig. 1 of the paper; image file from SichenTao/academic-homepage (assets/img/publication_preview, commit 8a21c84), resized"
   tags:
     - artificial visual system
     - motion direction detection
@@ -796,3 +808,102 @@
     checked: 2026-09-26
   affiliations_on_paper:
     - Tongji University
+- id: shen2019comparative
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: early
+  title: Comparative analysis of component design problems for integrated hydraulic transformers
+  authors:
+    - Wei Shen
+    - Hamid Reza Karimi
+    - Ruihan Zhao
+  year: 2019
+  date: 2019-07
+  online: 2019-03-21
+  online_basis: crossref_published_online
+  venue: ijamt
+  volume: "103"
+  issue: "1-4"
+  pages: 389-407
+  doi: 10.1007/s00170-019-03543-2
+  url: https://link.springer.com/article/10.1007/s00170-019-03543-2
+  tags:
+    - hydraulic transformer
+    - component design
+    - fluid power
+  citations:
+    count: 12
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+- id: shen2018robust
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: early
+  title: Robust controller design for the excavator swing system under the active regulating common pressure rail
+  authors:
+    - Wei Shen
+    - Xiaoyu Su
+    - Yu Pang
+    - Ruihan Zhao
+  year: 2018
+  date: 2018-07
+  online: 2018-02-01
+  online_basis: crossref_published_online
+  venue: timc
+  volume: "40"
+  issue: "11"
+  pages: 3323-3332
+  doi: 10.1177/0142331217707369
+  url: https://journals.sagepub.com/doi/10.1177/0142331217707369
+  tags:
+    - excavator swing system
+    - robust control
+    - common pressure rail
+  citations:
+    count: 12
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
+  affiliations_on_paper:
+    - University of Shanghai for Science and Technology
+- id: su2018roll
+  type: journal
+  status: published
+  public: true
+  selected: false
+  theme: early
+  title: Roll Attitude Controller Design for Ships at Zero Speed
+  authors:
+    - Xiaoyu Su
+    - Yannan Gao
+    - Ruihan Zhao
+  year: 2018
+  date: 2018-02
+  online: 2017-10-23
+  online_basis: crossref_published_online
+  venue: ijfs
+  volume: "20"
+  issue: "2"
+  pages: 611-620
+  doi: 10.1007/s40815-017-0402-2
+  url: https://link.springer.com/article/10.1007/s40815-017-0402-2
+  tags:
+    - ship roll stabilization
+    - fuzzy control
+    - attitude control
+  citations:
+    count: 22
+    source: OpenAlex
+    checked: 2026-09-26
+  metadata:
+    source: Crossref
+    checked: 2026-09-26
