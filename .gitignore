@@ -1,1 +1,8 @@
-
+node_modules/
+dist/
+screenshots/
+data/_cache/
+.claude/
+# 非公开材料（本地保留，永不提交）
+private/
+预览主页.cmd
