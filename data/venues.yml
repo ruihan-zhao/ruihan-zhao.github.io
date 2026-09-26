@@ -101,6 +101,28 @@ aa:
   issn: 0144-5154
   note: Renamed "Robotic Intelligence and Automation" from 2023 (vol. 43).
   url: https://www.emerald.com/insight/publication/issn/0144-5154
+# 以下三刊（2018–2019 年论文）：本人简历列有分区与 IF，但未注明年份；按本页口径（论文当年、逐项标年份）核验前暂不显示指标。
+ijamt:
+  name: The International Journal of Advanced Manufacturing Technology
+  abbr: IJAMT
+  kind: journal
+  publisher: Springer
+  issn: 0268-3768
+  url: https://link.springer.com/journal/170
+ijfs:
+  name: International Journal of Fuzzy Systems
+  abbr: IJFS
+  kind: journal
+  publisher: Springer
+  issn: 1562-2479
+  url: https://link.springer.com/journal/40815
+timc:
+  name: Transactions of the Institute of Measurement and Control
+  abbr: TIMC
+  kind: journal
+  publisher: SAGE
+  issn: 0142-3312
+  url: https://journals.sagepub.com/home/tim
 rcar:
   name: IEEE International Conference on Real-time Computing and Robotics (RCAR 2025)
   abbr: IEEE RCAR
