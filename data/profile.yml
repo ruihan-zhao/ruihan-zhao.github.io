@@ -1,0 +1,204 @@
+# ----------------------------------------------------------------------------
+# Ruihan Zhao 赵瑞涵 · 个人主页数据层（单一事实来源 / single source of truth）
+# 规则：
+#   1. 只写有证据或本人确认的事实；来源写在 source / evidence 字段。
+#   2. 未知项写 null（构建时汇总为待补清单），页面上不显示，也绝不猜测。
+#   3. 未发表的稿件与其他非公开材料不得写入本目录（放在不提交的 private/ 目录）。
+# ----------------------------------------------------------------------------
+schema_version: 0.2
+updated: 2026-09-26
+
+name:
+  en: Ruihan Zhao
+  given: Ruihan
+  family: Zhao
+  zh: 赵瑞涵 # 本人确认 2026-09-26
+  citation_forms: ["R. Zhao", "Zhao, R.", "Zhao R."]
+
+headline:
+  en: Lecturer, Sino-German College of Applied Sciences (CDHAW), Tongji University
+  zh: 同济大学中德工程学院 讲师
+
+# 消歧声明：写进 JSON-LD 的 disambiguatingDescription、llms.txt、页面 meta 与页脚
+disambiguation:
+  en: >-
+    Lecturer at Tongji University (Sino-German College of Applied Sciences) working on human–robot
+    collaborative assembly planning and evolutionary optimization. Not to be confused with other
+    researchers named Ruihan Zhao (e.g., in robot learning at UT Austin or UC Berkeley, or in medical imaging).
+  zh: "同济大学中德工程学院讲师，研究人机协作装配规划与进化优化。与其他同名研究者（如 UT Austin、UC Berkeley 的机器人学习方向，或医学影像方向）不是同一人。"
+
+identifiers:
+  orcid:
+    id: 0009-0009-8208-0377
+    confirmed_by_user: true # 2026-09-26
+    evidence: >-
+      Crossref publisher metadata (checked 2026-09-26) attaches this ORCID to "Ruihan Zhao" on 8 works:
+      ASOC 2026, Mathematics 2024/2025 (×3), Symmetry 2024, KBS 2024, SPML 2024 (×2).
+      The public ORCID record currently lists no works, employment or education.
+  # Google Scholar / Scopus / ResearchGate / GitHub：本人暂无（2026-09-26）。建立后按下列格式添加即可自动上页：
+  #   google_scholar: { id: XXXXXXXXXXXX }
+  #   scopus_author_id: { id: "5xxxxxxxxxx" }
+  #   researchgate: { url: https://www.researchgate.net/profile/... }
+  #   github: { username: ... }
+  openalex:
+    id: A5006249302
+    authoritative: false
+    note: Merged cluster containing at least six homonymous authors; never use as an identity source.
+
+contact:
+  email: ruihan_zhao@tongji.edu.cn # 本人确认 2026-09-26
+
+photo: null # 本人：先空着（2026-09-26）。提供后放到 scripts/assets/img/ 并填写文件名
+
+positions:
+  - title: { en: Lecturer, zh: 讲师 }
+    org: { en: Tongji University, zh: 同济大学 }
+    unit: { en: Sino-German College of Applied Sciences (CDHAW), zh: 中德工程学院 }
+    url: https://cdhaw.tongji.edu.cn/
+    ror: https://ror.org/03rc6as71
+    current: true
+    start: null # 可选：入职年份
+    source: "本人确认 2026-09-26；英文院名见 CDHAW 官方材料"
+
+education:
+  - degree: { en: Ph.D., zh: 博士 }
+    org: { en: Tongji University, zh: 同济大学 }
+    unit: { en: School of Mechanical Engineering, zh: 机械与能源工程学院（现机械工程与机器人学院） }
+    start: 2021
+    end: 2025
+    advisor: null # 可选
+    note: 学院 2025 年 12 月公布更名为机械工程与机器人学院；英文官网页脚仍为 "School of Mechanical Engineering"（2026-09-26 核查）。论文署名亦为 School of Mechanical Engineering。
+  - degree: { en: Master's, zh: 硕士 }
+    org: { en: Tongji University, zh: 同济大学 }
+    unit: { en: Sino-German School for Postgraduate Studies (CDHK), zh: 中德学院 }
+    start: 2018
+    end: 2021
+    advisor: { en: Pengzhong Li, zh: 李鹏忠 }
+
+experience:
+  - title: { en: Visiting Ph.D. student (joint doctoral training), zh: 联合培养博士 }
+    org: { en: Technical University of Munich, zh: 慕尼黑工业大学 }
+    unit: { en: Professorship of Autonomous Vehicle Systems (AVS), zh: Autonomous Vehicle Systems（AVS）教席 }
+    host: { en: Prof. Johannes Betz, zh: Johannes Betz 教授 }
+    period: "2024"
+    url: https://www.mos.ed.tum.de/en/avs/home/
+    ror: https://ror.org/02kkvpp62
+
+awards:
+  - id: cec2025
+    date: 2025-06-12
+    awarder: IEEE Congress on Evolutionary Computation (CEC 2025)
+    title:
+      en: "IEEE CEC 2025 Competitions on Numerical Optimization — First Place in All Four Tracks"
+      zh: "IEEE CEC 2025 数值优化竞赛 · 四个赛道全部第一"
+    detail:
+      en: Member of the RDEx team, which ranked first in the bound-constrained single-objective, constrained single-objective, bound-constrained multi-objective, and constrained multi-objective tracks.
+      zh: 作为 RDEx 团队成员，在边界约束单目标、约束单目标、边界约束多目标、约束多目标四个赛道均获第一。
+    pubs: [tao2026rdexsop, tao2026rdexcsop, tao2026rdexmop, tao2026rdexcmop]
+    evidence:
+      - { label: Official competition repository, url: https://github.com/P-N-Suganthan/2025-CEC }
+      - { label: RDEx code, url: https://github.com/SichenTao/IEEE-CEC-2025-Competition-RDEx-Series }
+    source: "团队成员身份本人确认（2026-09-26）；名次与日期见 SichenTao/academic-homepage 的 awards / news 记录"
+  - id: wcci2024
+    date: 2024-06-30
+    awarder: IEEE World Congress on Computational Intelligence (WCCI 2024)
+    title:
+      en: "IEEE WCCI 2024 Competition on Numerical Optimization — Silver Award"
+      zh: "IEEE WCCI 2024 数值优化竞赛 · 银奖"
+    detail:
+      en: Member of the RDE (reconstructed differential evolution) team.
+      zh: 作为 RDE（重构差分进化）团队成员获奖。
+    pubs: [tao2024efficient]
+    evidence:
+      - { label: Official competition repository, url: https://github.com/P-N-Suganthan/2024-CEC }
+      - { label: RDE code, url: https://github.com/SichenTao/IEEE-WCCI-CEC-2024-Competition-RDE }
+    source: "团队成员身份本人确认（2026-09-26）；名次与日期见 SichenTao/academic-homepage 的 awards / news 记录"
+# 学术服务 / 教学 / 项目：本人暂无（2026-09-26），有了再按 awards 的格式添加 service: / teaching: / projects:
+
+# 论文署名单位（证据链；JSON-LD 与联系页使用）
+affiliations:
+  - id: tongji
+    org: { en: Tongji University, zh: 同济大学 }
+    ror: https://ror.org/03rc6as71
+    wikidata: Q16947
+    unit: { en: School of Mechanical Engineering, zh: 机械与能源工程学院 }
+    city: Shanghai, China
+    role: Ph.D. (2021–2025)
+    period_evidence: "Bylines 2022–2026"
+    evidence:
+      - "Crossref affiliation strings, e.g. 10.3390/math13020282, 10.1109/rcar65431.2025.11139773"
+  - id: tongji-cdhk
+    org: { en: Tongji University, zh: 同济大学 }
+    ror: https://ror.org/03rc6as71
+    wikidata: Q16947
+    unit: { en: Sino-German School for Postgraduate Studies, zh: 中德学院 }
+    city: Shanghai, China
+    role: Master's (2018–2021)
+    period_evidence: "Byline 2020 (10.3390/sym12101622)"
+  - id: tum
+    org: { en: Technical University of Munich, zh: 慕尼黑工业大学 }
+    ror: https://ror.org/02kkvpp62
+    wikidata: Q157808
+    unit: { en: TUM School of Engineering and Design, zh: 工程与设计学院 }
+    city: Garching, Germany
+    role: Joint doctoral training (2024), Professorship of Autonomous Vehicle Systems
+    period_evidence: "Bylines 2024–2026"
+    evidence:
+      - "Crossref affiliation strings, e.g. 10.3390/math13091389, 10.1109/itnec60942.2024.10733307"
+
+research:
+  summary:
+    en: >-
+      I work on human–robot collaborative (HRC) assembly, focusing on adaptive task allocation and
+      planning that jointly accounts for safety, efficiency, and human factors. My methods combine
+      multi-objective evolutionary optimization, reinforcement self-learning, and fuzzy clustering to
+      plan resources and tasks in shared human–robot assembly systems. I also work on differential
+      evolution algorithm design and benchmark-driven numerical optimization, with applications such
+      as wind farm layout optimization.
+    zh: "我的研究方向是人机协作（HRC）装配，重点关注兼顾安全、效率与人因的自适应任务分配与规划。我结合多目标进化优化、强化自学习与模糊聚类等方法，研究共享人机装配系统中的资源与任务协同规划。此外，我也从事差分进化算法设计与基准驱动的数值优化研究，应用包括风电场布局优化。"
+  themes:
+    - id: hrc
+      en: Human–robot collaborative assembly planning
+      zh: 人机协作装配任务分配与规划
+      keywords: [task allocation, assembly planning, safety–efficiency, human-centric manufacturing, product family formation]
+    - id: ec
+      en: Evolutionary computation and differential evolution
+      zh: 进化计算与差分进化算法
+      keywords: [differential evolution, multi-objective optimization, constrained optimization, wind farm layout optimization]
+    - id: vision
+      en: Bio-inspired artificial visual systems (co-authored)
+      zh: 仿生人工视觉系统（合作）
+      keywords: [motion direction detection, retinal direction selectivity]
+    - id: health
+      en: AI for healthcare (co-authored)
+      zh: 医疗人工智能（合作）
+      keywords: [mortality risk prediction, VA-ECMO]
+    - id: early
+      en: Manufacturing quality and machine tools (early work)
+      zh: 制造质量与机床精度（早期工作）
+      keywords: [quality management KPI, turn-milling machine tool accuracy]
+
+# 首页简介（本人口吻草稿，可直接改写）。{pubs} 会替换为论文页链接。
+bio:
+  en:
+    - >-
+      I am a Lecturer at the Sino-German College of Applied Sciences (CDHAW), Tongji University.
+      I received my Ph.D. from Tongji University in 2025 and my master's degree from Tongji's
+      Sino-German School for Postgraduate Studies in 2021, advised by Pengzhong Li. In 2024, I was a
+      visiting Ph.D. student (joint doctoral training) at the Professorship of Autonomous Vehicle
+      Systems (AVS), Technical University of Munich, hosted by Prof. Johannes Betz.
+    - "@research"
+    - >-
+      I was part of the RDEx team that won first place in all four numerical optimization tracks of the
+      IEEE CEC 2025 competitions, and of the RDE team that received a silver award at IEEE WCCI 2024.
+      Recent first-author papers appear in Applied Soft Computing, Advanced Engineering Informatics,
+      and Robotics and Computer-Integrated Manufacturing; the full record is on the {pubs}.
+  zh:
+    - "我是同济大学中德工程学院讲师。2025 年在同济大学获博士学位，2021 年在同济大学中德学院获硕士学位（导师：李鹏忠）。2024 年在慕尼黑工业大学 Autonomous Vehicle Systems（AVS）教席联合培养，合作导师为 Johannes Betz 教授。"
+    - "@research"
+    - "我是 RDEx 团队成员，该团队获 IEEE CEC 2025 数值优化竞赛四个赛道全部第一；也是 RDE 团队成员，获 IEEE WCCI 2024 数值优化竞赛银奖。近期一作论文发表于 Applied Soft Computing、Advanced Engineering Informatics 和 Robotics and Computer-Integrated Manufacturing，完整列表见{pubs}。"
+
+site:
+  base_url: https://ruihan-zhao.github.io
+  languages: [en, zh]
+  accent: "#1d4f91"
