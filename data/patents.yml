@@ -1,0 +1,80 @@
+# ----------------------------------------------------------------------------
+# patents.yml — 授权专利。本人提供（2026-09-26）；编号、名称、发明人、专利权人与日期
+# 逐条经 Google Patents 核对（2026-09-26）。英文名称为意译。
+# filed = 申请日；granted = 授权公告日。
+# ----------------------------------------------------------------------------
+- id: cn108533540b
+  number: CN108533540B
+  kind: invention
+  status: granted
+  title:
+    zh: 一种斜盘可旋转式的双缸体液压变压器
+    en: Double-cylinder-block hydraulic transformer with a rotatable swash plate
+  inventors:
+    - { zh: 沈伟, en: Wei Shen }
+    - { zh: 王介豪, en: Jiehao Wang }
+    - { zh: 赵瑞涵, en: Ruihan Zhao }
+  assignee: { zh: 上海理工大学, en: University of Shanghai for Science and Technology }
+  filed: 2018-04-25
+  granted: 2020-09-01
+  url: https://patents.google.com/patent/CN108533540B/zh
+- id: cn107174489b
+  number: CN107174489B
+  kind: invention
+  status: granted
+  title:
+    zh: 爬楼式复健仪水平调节机构
+    en: Leveling mechanism for a stair-climbing rehabilitation device
+  inventors:
+    - { zh: 赵瑞涵, en: Ruihan Zhao }
+    - { zh: 张兰春, en: Lanchun Zhang }
+    - { zh: 何紫璇, en: Zixuan He }
+    - { zh: 赵晨, en: Chen Zhao }
+    - { zh: 高朋帅, en: Pengshuai Gao }
+  assignee: { zh: 上海理工大学, en: University of Shanghai for Science and Technology }
+  filed: 2017-06-08
+  granted: 2019-12-24
+  url: https://patents.google.com/patent/CN107174489B/zh
+- id: cn107021253b
+  number: CN107021253B
+  kind: invention
+  status: granted
+  title:
+    zh: 书本包装装置
+    en: Book packaging device
+  inventors:
+    - { zh: 赵瑞涵, en: Ruihan Zhao }
+  assignee: { zh: 上海理工大学, en: University of Shanghai for Science and Technology }
+  filed: 2017-05-11
+  granted: 2019-06-04
+  url: https://patents.google.com/patent/CN107021253B/zh
+- id: cn107095769b
+  number: CN107095769B
+  kind: invention
+  status: granted
+  title:
+    zh: 爬楼式多功能复健仪
+    en: Stair-climbing multifunctional rehabilitation device
+  inventors:
+    - { zh: 赵瑞涵, en: Ruihan Zhao }
+    - { zh: 高朋帅, en: Pengshuai Gao }
+    - { zh: 何俊逸, en: Junyi He }
+    - { zh: 杨嘉伟, en: Jiawei Yang }
+    - { zh: 张兰春, en: Lanchun Zhang }
+  assignee: { zh: 上海理工大学, en: University of Shanghai for Science and Technology }
+  filed: 2017-05-17
+  granted: 2019-05-24
+  url: https://patents.google.com/patent/CN107095769B/zh
+- id: cn107237594b
+  number: CN107237594B
+  kind: invention
+  status: granted
+  title:
+    zh: 循环式高度调节阻水装置
+    en: Circulating height-adjustable water-blocking device
+  inventors:
+    - { zh: 赵瑞涵, en: Ruihan Zhao }
+  assignee: { zh: 上海理工大学, en: University of Shanghai for Science and Technology }
+  filed: 2017-06-09
+  granted: 2018-10-12
+  url: https://patents.google.com/patent/CN107237594B/zh
